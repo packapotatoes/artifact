@@ -71,6 +71,7 @@ development efforts.
 **Jump into artifact with the the [youtube commercial][4] and the
 [Quick Start Guide](docs/QuickStart.md).**
 
+
 ## Support The Project
 You can support the project by :star: staring it on github and
 :green_heart: sharing it with your friends, coworkers and social media. You
@@ -86,13 +87,14 @@ By supporting artifact, you are supporting open source tools for quality
 software development and also internship oportunities for students passionate
 about open source. Thank you!
 
+
 ## Stability
 Artifact is 1.0 software with a strong commitment to backwards compatibility.
 The 1.0 release is the "open source" release. Artifact is ready for projects of
 any size to use it as their defacto design documentation tool, but the external
 tooling may still be lacking for enterprise customers.
 
-The 2.0 release will focus on stabilizing the library for external tooling.
+Later releases will focus on stabilizing the library for external tooling.
 This will position artifact for integration with industry tools such as JIRA
 and external regression test tracking software. I am currently seeking
 enterprise support, please consider [supporting this project on patreon][5].
@@ -114,8 +116,7 @@ The following are stable APIs that should always remain backwards compatible:
   - The functional checks that are completed (i.e. dangling artifact names)
   - `art serve` default port of 5373 on localhost
 
-The following should remain relatively stable but may have minor tweaks
-before 2.0:
+The following should remain relatively stable but may have minor tweaks:
 - The output of commands, including:
   - The format of the output messages. I.e. you should not rely on `art ls`
     having a specific output format.
@@ -142,6 +143,33 @@ experimental features. If you find a bug please [open a ticket][6].
 
 [![Build Status](https://travis-ci.org/vitiral/artifact.svg?branch=master)](https://travis-ci.org/vitiral/artifact)
 
+
+## Artifact 2.0
+The next release of artifact will focus on making it more ergonomic and even
+easier to write clear design documents that link to code.
+
+This includes the following features, which are subject to change while 1.0
+is still in development:
+- [#185](https://github.com/vitiral/artifact/issues/185) support markdown as a
+  *data format* and make it the default in `settings.toml` after running `art init`.
+  (If nothing is specified in `settings.toml`, `.toml` files will remain the default).
+- [#158](https://github.com/vitiral/artifact/issues/158) embed a graph
+  description language (graphiz DOT) to create auto rendered graphs
+  [like this](http://viz-js.com/)
+- [#183](https://github.com/vitiral/artifact/issues/183#issuecomment-338438833)
+  link to code for sub-items in text using `[[.subpart]]`
+- (TODO: create issue) support `[[@ART-name]]` for substituting just the link to the
+  artifact. This support will integrate with sub-parts and the DOT graphs, as
+  you could do a node like `a -> {b [URL="[[@.subpart_b]]"]}` and the graph
+  would have a link to that code properly rendered.
+- (TODO: create issue) allow TST to link directly to REQ to enable requirements
+  based testing.
+- Refactor of artifact's own design documents using the above features. The refactor
+  should also include a design path forward for how the different components should
+  end up fitting together to better support external tooling.
+- A possible relicensing of the project to MIT + Apache 2.0
+
+
 ## Licensing
 
 ### Goals
@@ -156,7 +184,7 @@ The intent of the artifact licensing is that:
 ### Specifics
 All documentation and tutorials for the artifact application are released under
 the CC0 Creative Commons Public Domain License with the intent that you should
-feel free to copy, paste and modify any of the designs, guides examples or
+feel free to copy, paste and modify any of the designs, guides, examples or
 exported data for any purpose (including commercial) without the need of
 attribution. You can read more about CC0 here:
 https://creativecommons.org/publicdomain/
@@ -168,14 +196,14 @@ The CC0 license applies to:
 - The Artifact Documentation (located in `docs/`) except the logo in `docs/logo`
 - The [Artifact Wiki](https://github.com/vitiral/artifact/wiki)
 - Any file or data created by any artifact command, including:
-    - documents created by `art init`
-    - documents created by `art tutorial`
-    - compiled html/css/json files created by `art export`
+    - Documents created by `art init`
+    - Documents created by `art tutorial`
+    - Compiled html/css/json files created by `art export`
 
 The artifact logo (named Tula) is licensed under Creative Commons
 Attribution-ShareAlike (`CC BY-SA`) and can be used by the artifact project for
-any purpose without needing additional attribution. The artifact logo is located
-in `docs/logo` and was originally created by
+any purpose without needing additional attribution. The artifact logo is
+located in `docs/logo` and was originally created by
 [packapotatoes](https://github.com/packapotatoes).
 
 The artifact source code (located in `src/` and `web-ui/src`) are licensed under
