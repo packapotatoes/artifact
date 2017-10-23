@@ -97,6 +97,26 @@ It should have:
 See [[SPC-cmd]].
 '''
 
+[REQ-completion]
+text = '''
+Artifact will track how *complete* and *tested* an item is based on:
+- The artifact's type:
+    - TST is always as tested as it is completed.
+- The completion status of it's children:
+    - TST children affect tested% but do not impact completed%
+    - SPC children affect completed% but do not impact tested%
+    - REQ children affect both completed% and tested%
+- Whether it is implemented in code (i.e. `#ART-name` is somewhere in code) or
+  implemented using the `done` field.
+- The completion/tested status of its parts/children.
+
+In particular
+- The `done` field and code links will only be used to calculate completeness
+  if the artifact has no children.
+- TST artifacts shall only add to the tested% (not completed%) of artifacts
+  they are a partof.
+'''
+
 [REQ-partof]
 partof = 'REQ-1'
 text = '''
@@ -150,26 +170,6 @@ If you define:
 Then `REQ-foo-bar` will automatically be a partof `SPC-foo-bar`,
 `SPC-foo-bar` will be a partof `TST-foo-bar`. `SPC-bar` will not
 be a partof anything since it doesn't share a prefix.
-'''
-
-[REQ-completion]
-text = '''
-Artifact will track how *complete* and *tested* an item is based on:
-- The artifact's type:
-    - TST is always as tested as it is completed.
-- The completion status of it's children:
-    - TST children affect tested% but do not impact completed%
-    - SPC children affect completed% but do not impact tested%
-    - REQ children affect both completed% and tested%
-- Whether it is implemented in code (i.e. `#ART-name` is somewhere in code) or
-  implemented using the `done` field.
-- The completion/tested status of its parts/children.
-
-In particular
-- The `done` field and code links will only be used to calculate completeness
-  if the artifact has no children.
-- TST artifacts shall only add to the tested% (not completed%) of artifacts
-  they are a partof.
 '''
 
 [REQ-rpc]
@@ -265,4 +265,3 @@ Requirements of web page:
  - there shall be an option to disable editing (read-only)
  - webpage shall be able to view test execution data
 '''
-

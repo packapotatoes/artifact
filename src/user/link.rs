@@ -192,19 +192,17 @@ fn parts_average(ty: Type, parts: &Vec<&Part>) -> Part {
                 num_tested += 1;
                 sum_tested += p.tested;
             }
-        },
-        _ => {
-            for p in parts.iter() {
-                if p.affects_completed {
-                    num_completed += 1;
-                    sum_completed += p.completed;
-                }
-                if p.affects_tested {
-                    num_tested += 1;
-                    sum_tested += p.tested;
-                }
-            }
         }
+        _ => for p in parts.iter() {
+            if p.affects_completed {
+                num_completed += 1;
+                sum_completed += p.completed;
+            }
+            if p.affects_tested {
+                num_tested += 1;
+                sum_tested += p.tested;
+            }
+        },
     }
 
     let (aff_spc, aff_tst) = match ty {
@@ -241,7 +239,7 @@ fn calc_done_field(ty: Type, artifact: &Artifact) -> Option<Part> {
                 panic!("REQ cannot have code links.");
             }
             (false, 1.0)
-        },
+        }
         Done::Defined(_) => (true, 1.0),
         Done::NotDone => {
             if !artifact.parts.is_empty() {
