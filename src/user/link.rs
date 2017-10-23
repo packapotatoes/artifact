@@ -177,7 +177,7 @@ struct Part {
 }
 
 /// Calculate the average of the artifact's 'parts'
-fn parts_average(ty: Type, parts: &Vec<&Part>) -> Part {
+fn parts_average(ty: Type, parts: &[&Part]) -> Part {
     let mut num_completed = 0;
     let mut sum_completed = 0.0;
     let mut num_tested = 0;
@@ -281,7 +281,7 @@ fn part_final(ty: Type, part: &mut Part) {
 
 /// Discover how complete and how tested all artifacts are (or are not!)
 ///
-/// #SPC-completion
+/// @SPC-completion
 pub fn set_completed(artifacts: &mut Artifacts) -> usize {
     let mut names = Names::from_iter(artifacts.keys().cloned());
     let mut known: HashMap<NameRc, Part> = HashMap::with_capacity(names.len());

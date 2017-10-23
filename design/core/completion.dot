@@ -10,7 +10,7 @@ digraph G {
     // REQ-completion
     {
         {R_start [label="\
-REQ artifact completion.";
+Artifact completion design";
         shape=box]}
 
         {R_children_both [label="\
@@ -41,6 +41,7 @@ of children"]}
             R_tst_code_exists -> R_tst_code [label="yes"];
                 R_tst_code -> R_children_tst;
             R_tst_code_exists -> R_children_tst [label="no"];
+            R_children_tst -> {R_tst_finish [label="set completed=tested"]}
     }
 
     // TODO: I want this cluster to be horizontal
